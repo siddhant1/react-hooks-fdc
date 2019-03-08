@@ -1,21 +1,33 @@
-import React from "react";
-import "./styles.css";
+import React from 'react'
+import './styles.css'
 
-function counter() {
-  return (
-    <div className="container">
-      <div onClick={() => dispatch({ type: "increment" })} className="btn">
-        +
+export default class Counter extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {count: this.props.count}
+  }
+
+  increment() {
+    this.setState(({count}) => ({count: count + 1}))
+  }
+  decrement() {
+    this.setState(({count}) => ({count: count - 1}))
+  }
+  render() {
+    return (
+      <div className="container">
+        <div onClick={this.increment} className="btn">
+          +
+        </div>
+        <div className="count">{'0'}</div>
+        <div onClick={this.decrement} className="btn">
+          -
+        </div>
       </div>
-      <div className="count">{"0"}</div>
-      <div onClick={() => dispatch({ type: "decrement" })} className="btn">
-        -
-      </div>
-    </div>
-  );
+    )
+  }
 }
 
-export default counter;
 // const reducer = (state, action) => {
 //   switch (action.type) {
 //     case "increment":
